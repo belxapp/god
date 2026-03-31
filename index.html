@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <title>iPhone風 手動切り取りデモ</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="topbar">
+      <button id="cancelBtn" class="circleBtn" title="リセット">✕</button>
 
+      <div class="cluster">
+        <div class="pill">
+          <button id="aspectBtn" title="縦横比">⇄</button>
+          <button id="rotate90Btn" title="90°回転">↻</button>
+        </div>
+        <div class="pill">
+          <button id="mirrorBtn" title="左右反転">◫</button>
+          <button id="moreBtn" title="読み込み">…</button>
+        </div>
+      </div>
+
+      <button id="applyBtn" class="circleBtn confirm" title="切り取りを書き出す">✓</button>
+    </div>
+
+    <div id="stageWrap" class="stageWrap">
+      <canvas id="stage"></canvas>
+      <input id="fileInput" class="fileInput" type="file" accept="image/*" />
+    </div>
+
+    <div class="controlsRow">
+      <div>
+        <button id="moveModeBtn" class="toolBtn active" title="画像移動・ズーム">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="24" cy="24" r="11" />
+            <path d="M24 4v8M24 36v8M4 24h8M36 24h8" />
+          </svg>
+        </button>
+        <div class="toolLabel">移動</div>
+      </div>
+
+      <div>
+        <button id="cropModeBtn" class="toolBtn" title="切り取り枠編集">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 8v24a4 4 0 0 0 4 4h22" />
+            <path d="M34 40V16a4 4 0 0 0-4-4H8" />
+          </svg>
+        </button>
+        <div class="toolLabel">枠調整</div>
+      </div>
+
+      <div>
+        <button id="straightenModeBtn" class="toolBtn" title="傾き補正">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 24h32" />
+            <path d="M16 16l24 8-24 8z" />
+          </svg>
+        </button>
+        <div class="toolLabel">傾き</div>
+      </div>
+    </div>
+
+    <div class="sliderWrap">
+      <input id="straightenSlider" type="range" min="-45" max="45" step="0.1" value="0" />
+    </div>
+
+    <div class="tabbar">
+      <button id="tabAdjust">調整</button>
+      <button id="tabFilter">フィルタ</button>
+      <button id="tabCrop" class="active">切り取り</button>
+    </div>
+
+    <div class="footer">
+      <button id="loadBtn" class="miniBtn">写真を読み込む</button>
+
+      <div class="seg" id="ratioSeg">
+        <button data-ratio="free" class="active">自由</button>
+        <button data-ratio="1">1:1</button>
+        <button data-ratio="1.3333333333">4:3</button>
+        <button data-ratio="1.7777777778">16:9</button>
+      </div>
+
+      <button id="downloadBtn" class="primaryBtn">PNGを書き出す</button>
+    </div>
+
+    <div class="hint">
+      1本指/マウスで画像移動、ホイールまたはピンチでズーム。<br />
+      「枠調整」で切り取り枠を移動・リサイズ、「傾き」で微回転。右上の✓でも書き出せます。
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
